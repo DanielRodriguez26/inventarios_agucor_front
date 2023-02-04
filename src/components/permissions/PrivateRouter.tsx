@@ -16,7 +16,6 @@ const PrivateRoute: FC<Props> = (props) => {
   useEffect(() => {
     userLoadAction();
   }, [userLoadAction]);
-  console.log(user);
 
   return user.length === 0 ? <Error404 /> : <>{element}</>;
 };

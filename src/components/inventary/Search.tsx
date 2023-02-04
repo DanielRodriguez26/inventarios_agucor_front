@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface searchListState {
   itemProdcut: any;
@@ -138,20 +139,20 @@ const Search: FC<searchListState> = (props) => {
                       </div>
                     </div>
                     <div className="col-3 col-md-1"></div>
-                    <div className="col-1">
-                      <button className="btn bg-gradient-warning">
-                        <i className="material-icons text-sm">exit_to_app</i>
-                      </button>
-                    </div>
+                    <div className="col-1 "></div>
                     <div className="col-1 ">
                       <button className="btn bg-gradient-info " type="submit">
                         <i className="material-icons text-sm">search</i>
+                        <br />
+                        Buscar
                       </button>
                     </div>
-                    <div className="col-1 ">
-                      <button className="btn bg-gradient-dark">
-                        <i className="material-icons text-sm">add</i>
-                      </button>
+                    <div className="col-1">
+                      <Link className="btn bg-gradient-warning" to="/output_inventary/">
+                        <i className="material-icons text-sm">output</i>
+                        <br />
+                        Salida
+                      </Link>
                     </div>
                     <div className="col-4 col-md-2">
                       <div className="input-group input-group-static mb-4">

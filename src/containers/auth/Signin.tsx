@@ -22,7 +22,7 @@ const Signin: FC<signinProps> = ({ data, signinAction }) => {
     signinAction(userEmail, userPassword);
   };
   useEffect((): ReturnType<EffectCallback> => {
-    console.log(data);
+    window.scrollTo();
     if (data) {
       MySwal.fire({
         title: 'Good job!',

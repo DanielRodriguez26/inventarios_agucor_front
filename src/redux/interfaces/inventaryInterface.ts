@@ -1,7 +1,8 @@
 import {
   listActionType,
   searchListActionType,
-  searchProductActionType
+  searchProductActionType,
+  inputInventaryActionType
 } from '../types/inventaryType';
 
 export interface inventaryInterface {
@@ -64,3 +65,18 @@ interface searchProductFailAction {
 export type searchProductActionInterface =
   | searchProductSuccessAction
   | searchProductFailAction;
+
+//-------------Input Inventary--------------
+interface inputInventarySuccessAction {
+  type: inputInventaryActionType.IMPUTINVENTARY_SUCCESS;
+  payload: inventaryInterface | inventaryFailInterface;
+}
+
+interface inputInventaryFailAction {
+  type: inputInventaryActionType.IMPUTINVENTARY_FAIL;
+  payload: inventaryFailInterface;
+}
+
+export type inputInventaryActionInterface =
+  | inputInventarySuccessAction
+  | inputInventaryFailAction;

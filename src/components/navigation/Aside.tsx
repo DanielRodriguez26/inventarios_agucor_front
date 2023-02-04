@@ -3,29 +3,22 @@ import { Link } from 'react-router-dom';
 
 const menuItems = [
   {
-    name: 'Apps',
-    icon: 'apps',
-    link: '/home'
-  },
-  {
-    name: 'Subscriptions',
-    icon: 'subscriptions',
-    link: '/'
-  },
-  {
-    name: 'Library',
-    icon: 'video_library',
-    link: '/home'
-  },
-  {
+    id: 4,
     name: 'Inventary',
     icon: 'inventory',
     link: '/inventary'
   },
   {
-    name: 'Watch Later',
-    icon: 'schedule',
-    link: '/home'
+    id: 3,
+    name: 'Salidas',
+    icon: 'output',
+    link: '/output_inventary_List'
+  },
+  {
+    id: 1,
+    name: 'Auditoria',
+    icon: 'format_list_bulleted',
+    link: '/auditory'
   }
 ];
 
@@ -57,6 +50,7 @@ const NavHeader = () => (
 
 type ButtonProps = {
   onClick: (item: string) => void;
+  id: number;
   name: string;
   icon?: string;
   link: string;
@@ -65,6 +59,7 @@ type ButtonProps = {
 };
 
 const NavButton: FC<ButtonProps> = ({
+  id,
   onClick,
   name,
   icon,
@@ -72,7 +67,7 @@ const NavButton: FC<ButtonProps> = ({
   hasSubNav,
   link
 }) => (
-  <ul className="navbar-nav">
+  <ul key={id} className="navbar-nav">
     <li className="nav-item">
       <Link
         className={
@@ -112,6 +107,7 @@ const Aside = () => {
         {menuItems.map((item) => (
           <>
             <NavButton
+              id={item.id}
               onClick={handleClick}
               link={item.link}
               name={item.name}
