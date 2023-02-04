@@ -1,12 +1,14 @@
 import {
   listActionType,
   searchListActionType,
-  searchProductActionType
+  searchProductActionType,
+  inputInventaryActionType
 } from '../types/inventaryType';
 import {
   listActionInterface,
   searchlistActionInterface,
-  searchProductActionInterface
+  searchProductActionInterface,
+  inputInventaryActionInterface
 } from '../interfaces/inventaryInterface';
 import { Dispatch } from 'react';
 import axios from 'axios';
@@ -19,7 +21,8 @@ export const inventaryListAction =
     inv_product: string,
     inv_size: string,
     inv_since: string,
-    inv_until: string
+    inv_until: string,
+    pageNext: number
   ) =>
   async (dispatch: Dispatch<listActionInterface>) => {
     if (localStorage.getItem('access')) {
@@ -36,7 +39,8 @@ export const inventaryListAction =
         inv_category,
         inv_provider,
         inv_since,
-        inv_until
+        inv_until,
+        pageNext
       };
 
       try {
@@ -48,7 +52,7 @@ export const inventaryListAction =
         if (res.status === 200) {
           dispatch({
             type: listActionType.LIST_SUCCESS,
-            payload: res.data.data
+            payload: res.data
           });
         } else {
           dispatch({
@@ -135,6 +139,50 @@ export const searchProcutAction =
       } catch (error: any) {
         dispatch({
           type: searchProductActionType.SEARCHPRODUCT_FAIL,
+          payload: error
+        });
+      }
+    }
+  };
+
+//---------------Input Inventary--------------
+export const inputInventaryAction =
+  (id: number, inv_unit_value: number) =>
+  async (dispatch: Dispatch<inputInventaryActionInterface>) => {
+    console.log(id);
+    if (localStorage.getItem('access')) {
+      const config: object = {
+        header: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
+      const body = {
+        id,
+        inv_unit_value
+      };
+
+      try {
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/inventary/input/`,
+          body,
+          config
+        );
+
+        if (res.status === 200) {
+          dispatch({
+            type: inputInventaryActionType.IMPUTINVENTARY_SUCCESS,
+            payload: res.data
+          });
+        } else {
+          dispatch({
+            type: inputInventaryActionType.IMPUTINVENTARY_FAIL,
+            payload: res.data
+          });
+        }
+      } catch (error: any) {
+        dispatch({
+          type: inputInventaryActionType.IMPUTINVENTARY_FAIL,
           payload: error
         });
       }

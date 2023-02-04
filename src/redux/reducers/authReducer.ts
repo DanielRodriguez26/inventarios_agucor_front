@@ -53,8 +53,9 @@ const authReducer = (
         data: payload
       };
     case userLoadActionType.USERLOAD_SUCCESS:
-      localStorage.setItem('user', payload.user);
-
+      localStorage.removeItem('users');
+      const userArr = localStorage.getItem('users') || '[]';
+      localStorage.setItem('users', JSON.stringify([payload, ...JSON.parse(userArr)]));
       return {
         ...state,
         user: payload

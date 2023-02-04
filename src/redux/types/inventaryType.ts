@@ -14,3 +14,8 @@ export enum searchProductActionType {
   SEARCHPRODUCT_SUCCESS = 'SEARCHPRODUCT_SUCCESS',
   SEARCHPRODUCT_FAIL = 'SEARCHPRODUCT_FAIL'
 }
+//---------------Input Inventary--------------
+export enum inputInventaryActionType {
+  IMPUTINVENTARY_SUCCESS = 'IMPUTINVENTARY_SUCCESS',
+  IMPUTINVENTARY_FAIL = 'IMPUTINVENTARY_FAIL'
+}
