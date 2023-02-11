@@ -149,7 +149,6 @@ export const searchProcutAction =
 export const inputInventaryAction =
   (id: number, inv_unit_value: number) =>
   async (dispatch: Dispatch<inputInventaryActionInterface>) => {
-    console.log(id);
     if (localStorage.getItem('access')) {
       const config: object = {
         header: {
