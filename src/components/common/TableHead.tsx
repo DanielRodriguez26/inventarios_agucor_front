@@ -4,7 +4,7 @@ interface headtSatate {
   itemsHead: any;
 }
 
-const InventaryTableHead: FC<headtSatate> = (itemsHead) => {
+const TableHead: FC<headtSatate> = (itemsHead) => {
   return (
     <thead>
       <tr>
@@ -22,4 +22,4 @@ const InventaryTableHead: FC<headtSatate> = (itemsHead) => {
   );
 };
 
-export default InventaryTableHead;
+export default TableHead;

@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import inventaryReducer from './inventaryReducer';
-
-// import User from './userReducer';
-// import Login from './loginReducer';
+import outputReducer from './outputReducer';
 
 export default combineReducers({
   authReducer,
-  inventaryReducer
-
-  // Login
+  inventaryReducer,
+  outputReducer
 });

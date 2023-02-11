@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 import InventaryTable from '../../components/inventary/InventaryTable';
 import Search from '../../components/inventary/Search';
 import Layout from '../../hocs/Layout';
-import InventaryTableHead from '../../components/inventary/InventaryTableHead';
+import TableHead from '../../components/common/TableHead';
 
 const MySwal = withReactContent(Swal);
 const Toast = Swal.mixin({
@@ -62,7 +62,6 @@ interface searchListState {
   inputInventaryAction(id: number, inv_unit_value: number): void;
   search: any;
   search_product: any;
-  result: any;
 }
 
 const Inventary: FC<searchListState> = (props) => {
@@ -73,8 +72,7 @@ const Inventary: FC<searchListState> = (props) => {
     searchProcutAction,
     search_product,
     inventaryListAction,
-    inputInventaryAction,
-    result
+    inputInventaryAction
   } = props;
   const [inv_provider, setProvider] = useState('' as string);
 
@@ -121,7 +119,7 @@ const Inventary: FC<searchListState> = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleChangePAge = (e: React.ChangeEvent<unknown>, page: number) => {
+  const handleChangePage = (e: React.ChangeEvent<unknown>, page: number) => {
     const pageNext = page;
     inventaryListAction(
       inv_category,
@@ -215,7 +213,7 @@ const Inventary: FC<searchListState> = (props) => {
             <div className="card-body px-0 pb-2">
               <div className="table-responsive p-0">
                 <table className="table align-items-center mb-0">
-                  <InventaryTableHead itemsHead={tableHead} />
+                  <TableHead itemsHead={tableHead} />
                   <InventaryTable
                     items={datas}
                     onClick={(id: number) => handleClick(id)}
@@ -224,7 +222,7 @@ const Inventary: FC<searchListState> = (props) => {
                     <div className=" justify-content-end">
                       <Stack spacing={1}>
                         <Pagination
-                          onChange={handleChangePAge}
+                          onChange={handleChangePage}
                           count={page}
                           size="small"
                         />
@@ -244,8 +242,7 @@ const Inventary: FC<searchListState> = (props) => {
 const mapStateToProps = (state: any) => ({
   data: state.inventaryReducer.data,
   search: state.inventaryReducer.search,
-  search_product: state.inventaryReducer.product,
-  result: state.inventaryReducer.result
+  search_product: state.inventaryReducer.product
 });
 
 export default connect(mapStateToProps, {
