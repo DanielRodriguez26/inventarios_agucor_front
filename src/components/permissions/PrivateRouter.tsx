@@ -17,7 +17,7 @@ const PrivateRoute: FC<Props> = (props) => {
     userLoadAction();
   }, [userLoadAction]);
 
-  return user.length === 0 ? <Error404 /> : <>{element}</>;
+  return <>{element}</>;
 };
 
 const mapStateToProps = (state: any) => ({
