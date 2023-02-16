@@ -32,6 +32,7 @@ export const outputProviderAction =
           config
         );
         if (res.status === 200) {
+          console.log(res);
           dispatch({
             type: outputProviderActionType.OUTPUTPROVIDER_SUCCESS,
             payload: res.data
@@ -61,6 +62,7 @@ export const searchOutputTypeAction =
           'Content-Type': 'application/json'
         }
       };
+      console.log(ci_output_type);
       const body = {
         ci_output_type
       };
@@ -103,10 +105,11 @@ export const sendOutputTypeAction =
           'Content-Type': 'application/json'
         }
       };
-      const user = 'daniel.rodriguezc037@gmail.com';
+      const aud_create = JSON.parse(localStorage.getItem('users') || '[]');
+      const aud_create_by = `${aud_create[0].first_name} ${aud_create[0].last_name}`;
       const body = {
-        outputInventary,
-        user
+        aud_create_by,
+        outputInventary
       };
 
       try {
@@ -201,7 +204,7 @@ export const outputListAction =
 //---------------Input Inevtary---------------
 
 export const inputInventaryTypeAction =
-  (id: any) => async (dispatch: Dispatch<inputInventaryActionInterface>) => {
+  (inv_invetary_id: any) => async (dispatch: Dispatch<inputInventaryActionInterface>) => {
     if (localStorage.getItem('access')) {
       const config: object = {
         header: {
@@ -209,10 +212,12 @@ export const inputInventaryTypeAction =
           'Content-Type': 'application/json'
         }
       };
-      const user = 'daniel.rodriguezc037@gmail.com';
+      const aud_create = JSON.parse(localStorage.getItem('users') || '[]');
+      const aud_create_by = `${aud_create[0].first_name} ${aud_create[0].last_name}`;
+      console.log(aud_create_by);
       const body = {
-        id,
-        user
+        inv_invetary_id,
+        aud_create_by
       };
 
       try {

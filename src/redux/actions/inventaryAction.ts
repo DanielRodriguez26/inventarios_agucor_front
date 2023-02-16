@@ -147,7 +147,7 @@ export const searchProcutAction =
 
 //---------------Input Inventary--------------
 export const inputInventaryAction =
-  (id: number, inv_unit_value: number) =>
+  (id: number, inv_unit_value: number, inv_amount: number, invoice: string) =>
   async (dispatch: Dispatch<inputInventaryActionInterface>) => {
     if (localStorage.getItem('access')) {
       const config: object = {
@@ -156,9 +156,14 @@ export const inputInventaryAction =
           'Content-Type': 'application/json'
         }
       };
+      const aud_create = JSON.parse(localStorage.getItem('users') || '[]');
+      const aud_create_by = `${aud_create[0].first_name} ${aud_create[0].last_name}`;
       const body = {
         id,
-        inv_unit_value
+        inv_unit_value,
+        inv_amount,
+        invoice,
+        aud_create_by
       };
 
       try {
