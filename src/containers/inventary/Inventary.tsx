@@ -59,7 +59,12 @@ interface searchListState {
     inv_until: string,
     pageNext: number
   ): void;
-  inputInventaryAction(id: number, inv_unit_value: number): void;
+  inputInventaryAction(
+    id: number,
+    inv_unit_value: number,
+    inv_amount: number,
+    invoice: string
+  ): void;
   search: any;
   search_product: any;
 }
@@ -152,26 +157,53 @@ const Inventary: FC<searchListState> = (props) => {
         return data.inv_measure + ' de ' + data.inv_product + ' - ' + data.inv_ref;
       });
 
-    const { value: inputVal } = await MySwal.fire({
-      title: product,
-      input: 'number',
-      inputLabel: 'Escribe la cantidad que entra',
-      inputPlaceholder: 'Entrada'
+    const { value: formValues } = await MySwal.fire({
+      title: `${product}`,
+      html: (
+        <div>
+          <label className="form-label">Cantidad que entra</label>
+          <div className="input-group input-group-static mb-3">
+            <input type="number" className="form-control" id="inputVal" />
+          </div>
+          <label className="form-label">Valor del producto</label>
+          <div className="input-group input-group-static mb-3">
+            <input type="number" className="form-control" id="amount" />
+          </div>
+          <label className="form-label">Ref. Factura</label>
+          <div className="input-group input-group-static mb-3">
+            <input type="text" className="form-control" id="invoice" />
+          </div>
+        </div>
+      ),
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          (document.getElementById('inputVal') as HTMLInputElement).value,
+          (document.getElementById('amount') as HTMLInputElement).value,
+          (document.getElementById('invoice') as HTMLInputElement).value
+        ];
+      }
     });
 
-    if (inputVal) {
+    if (formValues) {
+      console.log(formValues);
       const inv_unit_value = datas
         .filter((data: any) => {
           return data.id === id;
         })
         .map((data: any) => {
-          return parseInt(data.inv_unit_value) + parseInt(inputVal);
+          return parseInt(data.inv_unit_value) + parseInt(formValues[0]);
         });
-      inputInventaryAction(id, parseInt(inv_unit_value));
+      inputInventaryAction(
+        id,
+        parseInt(formValues[0]),
+        parseInt(formValues[1]),
+        formValues[2]
+      );
 
       Toast.fire({
         icon: 'success',
-        title: `Entran  ${inputVal}  ${product} para un total de ${inv_unit_value}`
+        title: `Entran  ${formValues[0]}  ${product} para un total de ${inv_unit_value}`
       });
 
       //MySwal.fire(`Entran  ${inputVal}  ${product} para un total de ${inv_unit_value}`);

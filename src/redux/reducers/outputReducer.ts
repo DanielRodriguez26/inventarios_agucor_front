@@ -38,6 +38,7 @@ const outputReducer = (
 
   switch (type) {
     case outputProviderActionType.OUTPUTPROVIDER_SUCCESS:
+      console.log(payload);
       return {
         ...state,
         data: payload

@@ -75,14 +75,6 @@ const OutputAdd: FC<outputListState> = (props) => {
                           onChange={onChangeoutputType}
                           name="inv_output_type"
                           id="inv_output_type"
-                          disabled={
-                            itemOutputAdd &&
-                            itemOutputAdd !== null &&
-                            itemOutputAdd !== undefined &&
-                            itemOutputAdd.length
-                              ? true
-                              : false
-                          }
                           required
                         >
                           <option value="">Selecciones a donde sale</option>
@@ -110,14 +102,6 @@ const OutputAdd: FC<outputListState> = (props) => {
                           onChange={onChange}
                           name="inv_client"
                           id="inv_client"
-                          disabled={
-                            itemOutputAdd &&
-                            itemOutputAdd !== null &&
-                            itemOutputAdd !== undefined &&
-                            itemOutputAdd.length
-                              ? true
-                              : false
-                          }
                           required
                         >
                           <option value="">Selecciones un Clente</option>

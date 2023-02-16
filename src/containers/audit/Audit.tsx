@@ -1,29 +1,23 @@
 import { Pagination, Stack } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
-import TableHead from '../../components/common/TableHead';
-import OutputListTable from '../../components/ouputInventary/OutputListTable';
-import OutputSearch from '../../components/ouputInventary/OutputSearch';
-import Layout from '../../hocs/Layout';
 import {
-  searchListAction,
   inventaryListAction,
-  searchProcutAction
+  searchListAction,
+  searchProcutAction,
+  inputInventaryAction
 } from '../../redux/actions/inventaryAction';
+import AuditSearch from '../../components/audit/AuditSearch';
+import AuditTable from '../../components/audit/AuditTable';
+import TableHead from '../../components/common/TableHead';
+import Layout from '../../hocs/Layout';
+import { auditListAction } from '../../redux/actions/auditAction';
 import {
-  outputListAction,
   outputProviderAction,
-  searchOutputTypeAction,
-  inputInventaryTypeAction
+  searchOutputTypeAction
 } from '../../redux/actions/outputActions';
 
-const MySwal = withReactContent(Swal);
-
 const tableHead: string[] = [
-  'Salio a',
-  'Cliente',
   'Clase',
   'Proveedor',
   'Color',
@@ -36,125 +30,116 @@ const tableHead: string[] = [
   'C. unidad',
   'C. total',
   'Fecha',
-  ''
+  'Descripcion',
+  'Reposnsable'
 ];
 
-interface outputListState {
-  list: any;
+interface auditListState {
   data: any;
-  client: any;
+  audit: any;
   search: any;
-  result: any;
+  client: any;
   search_product: any;
-  searchListAction(): void;
-  outputProviderAction(): void;
   searchProcutAction(product: string): void;
-  inputInventaryTypeAction(id: number): void;
+  outputProviderAction(): void;
   searchOutputTypeAction(client_output: string): void;
-  outputListAction(
-    oi_category: string,
-    oi_provider: string,
-    oi_product: string,
-    oi_color: string,
-    oi_size: string,
-    oi_client: string,
-    oi_output_type: string,
-    oi_until: string,
-    oi_since: string,
+  auditListAction(
+    aud_category: string,
+    aud_provider: string,
+    aud_product: string,
+    aud_color: string,
+    aud_size: string,
+    aud_client: string,
+    aud_output_type: string,
+    aud_create_by: string,
+    aud_until: string,
+    aud_since: string,
     pageNext: number
   ): void;
 }
 
-const OutputInevtaryList: FC<outputListState> = (props) => {
+const Audit: FC<auditListState> = (props) => {
   const {
-    list,
     data,
-    client,
     search,
-    result,
+    auditListAction,
+    audit,
     search_product,
-    outputListAction,
-    searchListAction,
+    searchProcutAction,
     outputProviderAction,
-    inputInventaryTypeAction,
     searchOutputTypeAction,
-    searchProcutAction
+    client
   } = props;
 
+  const page = audit.pages;
+  const datas = audit.data;
+  const [aud_output_type, setOutputType] = useState('' as string);
+  const [aud_provider, setProvider] = useState('' as string);
+
   const [formData, setFormData] = useState({
-    oi_category: null,
-    oi_provider: null,
-    oi_product: null,
-    oi_color: null,
-    oi_size: null,
-    oi_client: null,
-    oi_output_type: null,
-    oi_until: null,
-    oi_since: null,
+    aud_category: null,
+    aud_provider: null,
+    aud_product: null,
+    aud_color: null,
+    aud_size: null,
+    aud_client: null,
+    aud_output_type: null,
+    aud_create_by: null,
+    aud_until: null,
+    aud_since: null,
     pageNext: null
   } as object);
 
   const {
-    oi_category,
-    oi_product,
-    oi_color,
-    oi_size,
-    oi_client,
-    oi_until,
-    oi_since,
+    aud_category,
+    aud_product,
+    aud_color,
+    aud_size,
+    aud_client,
+    aud_create_by,
+    aud_until,
+    aud_since,
     pageNext
   }: any = formData;
-  const [oi_output_type, setOutputType] = useState('' as string);
-  const [oi_provider, setProvider] = useState('' as string);
-
-  const page = list.pages;
-  const datas = list.data;
 
   useEffect(() => {
-    if (result.data === true) {
-      MySwal.fire({
-        title: 'Bien hecho! ',
-        icon: 'success',
-        text: 'Acaba de ingresar el producto.'
-      });
-      result.data = false;
-    }
-    outputProviderAction();
+    window.scrollTo();
     searchListAction();
-    outputListAction(
-      oi_category,
-      oi_provider,
-      oi_product,
-      oi_color,
-      oi_size,
-      oi_client,
-      oi_output_type,
-      oi_until,
-      oi_since,
+    outputProviderAction();
+    auditListAction(
+      aud_category,
+      aud_provider,
+      aud_product,
+      aud_color,
+      aud_size,
+      aud_client,
+      aud_output_type,
+      aud_create_by,
+      aud_until,
+      aud_since,
       pageNext
     );
-  }, [outputListAction, outputProviderAction, result]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }, [auditListAction]);
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, page: number) => {
     const pageNext = page;
-    outputListAction(
-      oi_category,
-      oi_provider,
-      oi_product,
-      oi_color,
-      oi_size,
-      oi_client,
-      oi_output_type,
-      oi_until,
-      oi_since,
+    auditListAction(
+      aud_category,
+      aud_provider,
+      aud_product,
+      aud_color,
+      aud_size,
+      aud_client,
+      aud_output_type,
+      aud_create_by,
+      aud_until,
+      aud_since,
       pageNext
     );
   };
-
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleChangeProviver = (e: React.ChangeEvent<HTMLSelectElement>) => {
     searchProcutAction(e.target.value);
     if (!e.target.value) {
@@ -172,27 +157,25 @@ const OutputInevtaryList: FC<outputListState> = (props) => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    outputListAction(
-      oi_category,
-      oi_provider,
-      oi_product,
-      oi_color,
-      oi_size,
-      oi_client,
-      oi_output_type,
-      oi_until,
-      oi_since,
+    auditListAction(
+      aud_category,
+      aud_provider,
+      aud_product,
+      aud_color,
+      aud_size,
+      aud_client,
+      aud_output_type,
+      aud_create_by,
+      aud_until,
+      aud_since,
       pageNext
     );
   };
-  const handleClick = (id: number) => {
-    inputInventaryTypeAction(id);
-  };
-
+  console.log(data);
   return (
     <Layout>
       <div className="row">
-        <OutputSearch
+        <AuditSearch
           itemSearch={search}
           itemOutputSearch={data}
           itemClient={client}
@@ -206,17 +189,14 @@ const OutputInevtaryList: FC<outputListState> = (props) => {
           <div className="card my-4">
             <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 className="text-white text-capitalize ps-3">Salidas</h6>
+                <h6 className="text-white text-capitalize ps-3">Inventario</h6>
               </div>
             </div>
             <div className="card-body px-0 pb-2">
               <div className="table-responsive p-0">
                 <table className="table align-items-center mb-0">
                   <TableHead itemsHead={tableHead} />
-                  <OutputListTable
-                    items={datas}
-                    onClick={(id: number) => handleClick(id)}
-                  />
+                  <AuditTable items={datas} />
                 </table>
               </div>
               <div className="d-flex flex-row-reverse">
@@ -235,7 +215,7 @@ const OutputInevtaryList: FC<outputListState> = (props) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  list: state.outputReducer.list,
+  audit: state.auditListReducer.data,
   data: state.outputReducer.data,
   client: state.outputReducer.client,
   search: state.inventaryReducer.search,
@@ -244,11 +224,9 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default connect(mapStateToProps, {
-  inventaryListAction,
-  outputListAction,
+  auditListAction,
   searchListAction,
   searchOutputTypeAction,
-  searchProcutAction,
   outputProviderAction,
-  inputInventaryTypeAction
-})(OutputInevtaryList);
+  searchProcutAction
+})(Audit);

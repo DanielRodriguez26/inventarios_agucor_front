@@ -18,7 +18,7 @@ const menuItems = [
     id: 1,
     name: 'Auditoria',
     icon: 'format_list_bulleted',
-    link: '/auditory'
+    link: '/audit'
   }
 ];
 
