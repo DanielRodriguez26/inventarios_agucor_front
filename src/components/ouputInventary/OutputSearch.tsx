@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface outputSearchState {
   onChange: any;
@@ -264,6 +265,16 @@ const OutputSearch: FC<outputSearchState> = (props) => {
                         <br />
                         Buscar
                       </button>
+                    </div>
+                    <div className="col-1 ">
+                      <Link
+                        className="btn bg-gradient-success "
+                        to="http://127.0.0.1:8000/outputs/downlaod/"
+                      >
+                        <i className="material-icons text-sm">download</i>
+                        <br />
+                        Excel
+                      </Link>
                     </div>
                   </div>
                 </form>

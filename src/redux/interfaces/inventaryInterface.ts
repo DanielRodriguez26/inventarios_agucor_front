@@ -10,6 +10,7 @@ export interface inventaryInterface {
   inv_category: string;
   inv_provider: string;
   inv_color: string;
+  inv_ref_color: string;
   inv_product: string;
   inv_ref: string;
   inv_measure: string;

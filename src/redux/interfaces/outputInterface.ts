@@ -12,6 +12,7 @@ export interface outputInterface {
   oi_client: string;
   oi_provider: string;
   oi_output_type: string;
+  oi_ref_color: string;
   oi_color: string;
   oi_product: string;
   oi_ref: string;

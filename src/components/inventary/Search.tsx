@@ -207,6 +207,17 @@ const Search: FC<searchListState> = (props) => {
                     </div>
                     <div className="col-4 col-md-2"></div>
                     <div className="col-4 col-md-2"></div>
+                    <div className="col-1 "></div>
+                    <div className="col-1 ">
+                      <Link
+                        className="btn bg-gradient-success "
+                        to="http://127.0.0.1:8000/inventary/downlaod/"
+                      >
+                        <i className="material-icons text-sm">download</i>
+                        <br />
+                        Excel
+                      </Link>
+                    </div>
                   </div>
                 </form>
               </div>
