@@ -2,7 +2,8 @@ import {
   authActionType,
   userLoadActionType,
   signupActionType,
-  signinActionType
+  signinActionType,
+  logoutActionType
 } from '../types/authType';
 
 export interface userInterface {
@@ -75,3 +76,16 @@ interface userLoadErrorAtion {
 }
 
 export type userLoadAtionInterface = userLoadSuccessAtion | userLoadErrorAtion;
+
+//---------------Load User---------------
+interface logoutSuccessAtion {
+  type: logoutActionType.LOGOUT_SUCCESS;
+  payload: [];
+}
+
+interface logoutErrorAtion {
+  type: logoutActionType.LOGOUT_FAIL;
+  payload: userFailInterface;
+}
+
+export type logoutAtionInterface = logoutSuccessAtion | logoutErrorAtion;

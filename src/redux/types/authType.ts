@@ -18,3 +18,8 @@ export enum userLoadActionType {
   USERLOAD_SUCCESS = 'USERLOAD_SUCCESS',
   USERLOAD_FAIL = 'USERLOAD_FAIL'
 }
+//---------------User Load---------------
+export enum logoutActionType {
+  LOGOUT_SUCCESS = 'LOGOUT_SUCCESS',
+  LOGOUT_FAIL = 'LOGOUT_FAIL'
+}

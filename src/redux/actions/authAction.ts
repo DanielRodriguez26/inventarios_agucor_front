@@ -2,13 +2,15 @@ import {
   authActionType,
   signupActionType,
   signinActionType,
-  userLoadActionType
+  userLoadActionType,
+  logoutActionType
 } from '../types/authType';
 import {
   authAtionInterface,
   signupAtionInterface,
   signinAtionInterface,
   userLoadAtionInterface,
+  logoutAtionInterface,
   userInterface
 } from '../interfaces/authInterface';
 import { Dispatch } from 'react';
@@ -171,3 +173,10 @@ export const signinAction =
       });
     }
   };
+
+export const logout = () => (dispatch: Dispatch<logoutAtionInterface>) => {
+  dispatch({
+    type: logoutActionType.LOGOUT_SUCCESS,
+    payload: []
+  });
+};

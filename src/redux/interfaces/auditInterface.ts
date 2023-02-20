@@ -6,6 +6,7 @@ export interface auditListInterface {
   aud_description: string;
   aud_provider: string;
   aud_color: string;
+  aud_ref_color: string;
   aud_product: string;
   aud_ref: string;
   aud_measure: string;

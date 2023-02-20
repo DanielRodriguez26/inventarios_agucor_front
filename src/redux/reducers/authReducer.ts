@@ -2,13 +2,15 @@ import {
   authActionType,
   userLoadActionType,
   signupActionType,
-  signinActionType
+  signinActionType,
+  logoutActionType
 } from '../types/authType';
 import {
   authAtionInterface,
   userLoadAtionInterface,
   signupAtionInterface,
-  signinAtionInterface
+  signinAtionInterface,
+  logoutAtionInterface
 } from '../interfaces/authInterface';
 
 interface userState {
@@ -36,6 +38,7 @@ const authReducer = (
     | signupAtionInterface
     | signinAtionInterface
     | userLoadAtionInterface
+    | logoutAtionInterface
 ): userState => {
   const { type, payload } = action;
 
@@ -75,8 +78,11 @@ const authReducer = (
     case signinActionType.SIGNIN_FAIL:
     case signupActionType.SIGNUP_SUCCESS:
     case signupActionType.SIGNUP_FAIL:
+    case logoutActionType.LOGOUT_SUCCESS:
       localStorage.removeItem('access');
       localStorage.removeItem('refresh');
+      localStorage.removeItem('users');
+
       return {
         ...state,
         access: null,
