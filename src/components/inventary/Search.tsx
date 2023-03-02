@@ -211,7 +211,7 @@ const Search: FC<searchListState> = (props) => {
                     <div className="col-1 ">
                       <Link
                         className="btn bg-gradient-success "
-                        to="http://192.168.1.228:8000/inventary/downlaod/"
+                        to="http://143.198.180.245:8000/inventary/downlaod/"
                       >
                         <i className="material-icons text-sm">download</i>
                         <br />
