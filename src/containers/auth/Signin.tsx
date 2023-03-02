@@ -25,7 +25,7 @@ const Signin: FC<signinProps> = ({ data, signinAction }) => {
     window.scrollTo();
     if (data) {
       MySwal.fire({
-        title: 'Good job!',
+        title: 'Bienvenido!',
         icon: 'success',
         text: 'Bien benido'
       });
@@ -35,7 +35,7 @@ const Signin: FC<signinProps> = ({ data, signinAction }) => {
       MySwal.fire({
         title: 'Opss!',
         icon: 'warning',
-        text: 'Lo valores digitado estan incorrectos'
+        text: 'Los valores digitado estan incorrectos'
       });
 
       navigate('/');
@@ -52,7 +52,7 @@ const Signin: FC<signinProps> = ({ data, signinAction }) => {
               <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                   <h4 className="text-white font-weight-bolder text-center mt-2 mb-0">
-                    Sign in
+                    Iniciar sesión en Agucor
                   </h4>
                   <div className="row mt-3">
                     <div className="col-2 text-center ms-auto"></div>
@@ -82,18 +82,9 @@ const Signin: FC<signinProps> = ({ data, signinAction }) => {
                       type="submit"
                       className="btn bg-gradient-primary w-100 my-4 mb-2"
                     >
-                      Sign up
+                      Iniciar sesión
                     </button>
                   </div>
-                  <p className="mt-4 text-sm text-center">
-                    Already have an account?
-                    <a
-                      href="../pages/sign-up.html"
-                      className="text-primary text-gradient font-weight-bold"
-                    >
-                      Sign in
-                    </a>
-                  </p>
                 </form>
               </div>
             </div>

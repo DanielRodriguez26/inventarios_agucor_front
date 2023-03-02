@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
+import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { logout } from '../../redux/actions/authAction';
+interface navState {
+  logout(): void;
+}
 
-const Navbar = () => {
+const Navbar: FC<navState> = (props) => {
+  const { logout } = props;
   const [redirect, setRedirect] = useState(false);
 
   const logoutHandler = () => {
@@ -11,6 +16,7 @@ const Navbar = () => {
   };
 
   if (redirect) {
+    window.location.reload();
     return <Navigate to="/" />;
   }
 
@@ -48,4 +54,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state: any) => ({});
+
+export default connect(mapStateToProps, { logout })(Navbar);

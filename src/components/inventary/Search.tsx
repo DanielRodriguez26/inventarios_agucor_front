@@ -104,7 +104,7 @@ const Search: FC<searchListState> = (props) => {
                             productsObjet.length !== 0 &&
                             productsObjet.map((item: any) => (
                               <>
-                                <option key={item.id} value={item.pt_name}>
+                                <option key={item.id} value={item.id}>
                                   {item.pt_name} - {item.pt_description}
                                 </option>
                               </>
@@ -130,8 +130,8 @@ const Search: FC<searchListState> = (props) => {
                             colorsObjet.length !== 0 &&
                             colorsObjet.map((item: any) => (
                               <>
-                                <option key={item.id} value={item.cl_name}>
-                                  {item.cl_name}
+                                <option key={item.id} value={item.id}>
+                                  {item.cl_name} - {item.cl_description}
                                 </option>
                               </>
                             ))}
@@ -211,7 +211,7 @@ const Search: FC<searchListState> = (props) => {
                     <div className="col-1 ">
                       <Link
                         className="btn bg-gradient-success "
-                        to="http://127.0.0.1:8000/inventary/downlaod/"
+                        to="http://192.168.1.228:8000/inventary/downlaod/"
                       >
                         <i className="material-icons text-sm">download</i>
                         <br />

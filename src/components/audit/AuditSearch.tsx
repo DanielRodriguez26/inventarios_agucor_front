@@ -279,7 +279,7 @@ const OutputSearch: FC<outputSearchState> = (props) => {
                     <div className="col-1 ">
                       <Link
                         className="btn bg-gradient-success "
-                        to="http://127.0.0.1:8000/audits/downlaod/"
+                        to="http://192.168.1.228:8000/audits/downlaod/"
                       >
                         <i className="material-icons text-sm">download</i>
                         <br />

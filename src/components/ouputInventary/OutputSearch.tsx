@@ -197,7 +197,7 @@ const OutputSearch: FC<outputSearchState> = (props) => {
                             colorsObjet.map((item: any) => (
                               <>
                                 <option key={item.id} value={item.id}>
-                                  {item.cl_name}
+                                  {item.cl_name} - {item.cl_description}
                                 </option>
                               </>
                             ))}
@@ -269,7 +269,7 @@ const OutputSearch: FC<outputSearchState> = (props) => {
                     <div className="col-1 ">
                       <Link
                         className="btn bg-gradient-success "
-                        to="http://127.0.0.1:8000/outputs/downlaod/"
+                        to="http://192.168.1.228:8000/outputs/downlaod/"
                       >
                         <i className="material-icons text-sm">download</i>
                         <br />
