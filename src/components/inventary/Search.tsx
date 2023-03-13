@@ -131,7 +131,7 @@ const Search: FC<searchListState> = (props) => {
                             colorsObjet.map((item: any) => (
                               <>
                                 <option key={item.id} value={item.id}>
-                                  {item.cl_name} - {item.cl_description}
+                                  {item.cl_name}
                                 </option>
                               </>
                             ))}

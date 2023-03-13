@@ -39,13 +39,13 @@ const Navbar: FC<navState> = (props) => {
           </div>
           <ul className="navbar-nav  justify-content-end">
             <li className="nav-item d-flex align-items-center">
-              <button
+              <div
                 onClick={logoutHandler}
                 className="nav-link text-body font-weight-bold px-0"
               >
-                <i className="fa fa-user me-sm-1" />
-                <span className="d-sm-inline d-none">Sign In</span>
-              </button>
+                <i className="fa fa-power-off me-sm-1" />
+                <span className="d-sm-inline d-none">Cerrar sesion</span>
+              </div>
             </li>
           </ul>
         </div>

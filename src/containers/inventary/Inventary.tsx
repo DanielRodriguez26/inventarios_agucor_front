@@ -33,7 +33,6 @@ const tableHead: string[] = [
   'Clase',
   'Proveedor',
   'Color',
-  'cod. Color',
   'Insomo',
   'Referencia',
   'Talla',

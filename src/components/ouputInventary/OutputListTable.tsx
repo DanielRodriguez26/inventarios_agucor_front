@@ -43,11 +43,6 @@ const OutputListTable: FC<OutputListTableState> = (props) => {
               </td>
               <td>
                 <div className="d-flex px-2 py-1">
-                  <p className="text-xs font-weight-bold  ml-1">{item.oi_ref_color}</p>
-                </div>
-              </td>
-              <td>
-                <div className="d-flex px-2 py-1">
                   <p className="text-xs font-weight-bold  ml-1">{item.oi_product}</p>
                 </div>
               </td>
